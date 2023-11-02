@@ -9,8 +9,8 @@ namespace SMEG_GT {
 		game->setup();
 	}
 
-	void setup(Hardware* hw) {
-		hardware = hw;
+	void setup(Hardware* newHardware) {
+		hardware = newHardware;
 
 		int _outputs[] = {
 			hardware->batteryPin,
@@ -39,5 +39,9 @@ namespace SMEG_GT {
 			game->update();
 			game->render();
 		}
+	}
+
+	bool isButtonPressed(Button button) {
+		
 	}
 }

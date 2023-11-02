@@ -5,6 +5,8 @@
 
 namespace SMEG_GT {
 	void loadGame(Game* newGame);
-	void setup(Hardware* hardware);
+	void setup(Hardware* newHardware);
 	void loop();
+
+	bool isButtonPressed(Button button);
 }

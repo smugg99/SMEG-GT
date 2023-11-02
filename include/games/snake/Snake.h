@@ -1,29 +1,13 @@
 #pragma once
 #include <SMEG_GT.h>
 
-class Snake : public GT_Game {
+class Snake : public SMEG_GT::Game {
 public:
-	Snake() {
+	Snake();
+	~Snake();
 
-	}
-
-	~Snake() {
-
-	}
-
-	void setup() override {
-
-	}
-
-	void input() override {
-
-	}
-
-	void update() override {
-
-	}
-
-	void render() override {
-
-	}
+	void setup() override;
+	void input() override;
+	void update() override;
+	void render() override;
 };
