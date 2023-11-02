@@ -1,30 +1,21 @@
-#include "Game.h"
+#ifndef SMEG_GT_h
+#define SMEG_GT_h
+
+#include "GT_Hardware.h"
+#include "GT_Game.h"
 
 class SMEG_GT {
 public:
-	static SMEG_GT& getInstance() {
-		static SMEG_GT instance;
-		return instance;
-	}
+	SMEG_GT();
+	~SMEG_GT();
 
-	void loadGame(Game* game) {
-		currentGame = game;
-		currentGame->setup();
-	}
-
-	void runGameLoop() {
-		if (currentGame) {
-			while (true) {
-				currentGame->input();
-				currentGame->update();
-				currentGame->render();
-			}
-		}
-	}
+	void loadGame(GT_Game* newGame);
+	void handleSetup(GT_Hardware* hardware);
+	void handleLoop();
 
 private:
-	Game* currentGame;
-
-	SMEG_GT() : currentGame(nullptr) {}
-	~SMEG_GT() {}
+	GT_Game* game;
+	GT_Hardware* hardware;
 };
+
+#endif
