@@ -1,26 +1,40 @@
 #include "SMEG_GT.h"
 
+namespace SMEG_GT {
+	Game* game = nullptr;
+	Hardware* hardware = nullptr;
 
-SMEG_GT::SMEG_GT() {
+	void loadGame(Game* newGame) {
+		game = newGame;
+		game->setup();
+	}
 
-}
+	void setup(Hardware* hw) {
+		hardware = hw;
 
-SMEG_GT::~SMEG_GT() {
+		int _outputs[] = {
+			hardware->batteryPin,
+			hardware->buzzerPin,
+		};
 
-}
+		int _inputs[] = {
+			hardware->buttonUpPin,
+			hardware->buttonDownPin,
+			hardware->buttonLeftPin,
+			hardware->buttonRightPin,
+		};
 
-void SMEG_GT::loadGame(GT_Game* newGame) {
-	this->game = newGame;
-	this->game->setup();
-}
+		for (int _output : _outputs) {
+			pinMode(_output, OUTPUT);
+		}
 
-void SMEG_GT::handleSetup(GT_Hardware* hardware) {
-	this->hardware = hardware;
-}
+		for (int _input : _inputs) {
+			pinMode(_input, INPUT);
+		}
+	}
 
-void SMEG_GT::handleLoop() {
-	if (game) {
-		while (true) {
+	void loop() {
+		if (game) {
 			game->input();
 			game->update();
 			game->render();
